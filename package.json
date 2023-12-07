@@ -1,4 +1,11 @@
 {
+  "name": "ts-node-ddd-patterns",
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "test": "npm run tsc -- --noEmit && jest",
+    "tsc": "tsc"
+  },
   "devDependencies": {
     "@swc/cli": "^0.1.55",
     "@swc/core": "^1.2.148",
@@ -8,10 +15,6 @@
     "ts-node": "^10.6.0",
     "tslint": "^6.1.3",
     "typescript": "^4.5.5"
-  },
-  "scripts": {
-    "test": "npm run tsc -- --noEmit && jest",
-    "tsc": "tsc"
   },
   "dependencies": {
     "@types/uuid": "^8.3.4",
