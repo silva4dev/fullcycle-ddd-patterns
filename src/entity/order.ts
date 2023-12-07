@@ -25,7 +25,7 @@ export default class Order {
     return this._items;
   }
 
-  validate(): boolean {
+  validate() {
     if (this._id.length === 0) {
       throw new Error("Id is required");
     }
@@ -39,8 +39,6 @@ export default class Order {
     if (this._items.some((item) => item.quantity <= 0)) {
       throw new Error("Quantity must be greater than 0");
     }
-
-    return true;
   }
 
   total(): number {
