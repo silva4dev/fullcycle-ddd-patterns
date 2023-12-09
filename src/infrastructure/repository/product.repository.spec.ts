@@ -42,4 +42,44 @@ describe("Product repository test", () => {
       price: 100,
     });
   });
+
+  it("should update a product", async () => {
+    const productRepository = new ProductRepository();
+    const product = new Product("1", "Product 1", 100);
+
+    await productRepository.create(product);
+
+    let productModel = await (
+      await ProductModel.findOne({ where: { id: "1" } })
+    ).toJSON();
+
+    expect({
+      id: productModel.id,
+      name: productModel.name,
+      price: productModel.price,
+    }).toStrictEqual({
+      id: "1",
+      name: "Product 1",
+      price: 100,
+    });
+
+    product.changeName("Product 2");
+    product.changePrice(200);
+
+    await productRepository.update(product);
+
+    productModel = (
+      await ProductModel.findOne({ where: { id: "1" } })
+    ).toJSON();
+
+    expect({
+      id: productModel.id,
+      name: productModel.name,
+      price: productModel.price,
+    }).toStrictEqual({
+      id: "1",
+      name: "Product 2",
+      price: 200,
+    });
+  });
 });
