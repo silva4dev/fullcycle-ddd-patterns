@@ -104,4 +104,40 @@ describe("Product repository test", () => {
       price: foundProduct.price,
     });
   });
+
+  it("should find all products", async () => {
+    const productRepository = new ProductRepository();
+    const product = new Product("1", "Product 1", 100);
+    await productRepository.create(product);
+
+    const product2 = new Product("2", "Product 2", 200);
+    await productRepository.create(product2);
+
+    const foundProducts = await productRepository.findAll();
+    const products = [product, product2];
+
+    expect([
+      {
+        id: products[0].id,
+        name: products[0].name,
+        price: products[0].price,
+      },
+      {
+        id: products[1].id,
+        name: products[1].name,
+        price: products[1].price,
+      },
+    ]).toEqual([
+      {
+        id: foundProducts[0].id,
+        name: foundProducts[0].name,
+        price: foundProducts[0].price,
+      },
+      {
+        id: foundProducts[1].id,
+        name: foundProducts[1].name,
+        price: foundProducts[1].price,
+      },
+    ]);
+  });
 });
