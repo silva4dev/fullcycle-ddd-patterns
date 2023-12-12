@@ -32,6 +32,6 @@ export default class EventDispatcher implements EventDispatcherInterface {
   }
 
   unregisterAll(): void {
-    throw new Error("Method not implemented.");
+    this.eventHandlers = {};
   }
 }
