@@ -8,7 +8,12 @@ export default class EventDispatcher implements EventDispatcherInterface {
     return this.eventHandlers;
   }
   notify(event: EventInterface): void {
-    throw new Error("Method not implemented.");
+    const eventName = event.constructor.name
+    if(this.eventHandlers[eventName]) {
+      this.eventHandlers[eventName].forEach((eventHandler) => {
+        eventHandler.handle(event);
+      })
+    }
   }
   register(
     eventName: string,
@@ -30,7 +35,6 @@ export default class EventDispatcher implements EventDispatcherInterface {
       }
     }
   }
-
   unregisterAll(): void {
     this.eventHandlers = {};
   }
