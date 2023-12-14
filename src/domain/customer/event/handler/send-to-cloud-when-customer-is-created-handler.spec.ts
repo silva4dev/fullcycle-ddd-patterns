@@ -2,7 +2,7 @@ import Customer from "../../entity/customer";
 import CustomerCreatedEvent from "../customer-created.event";
 import SendToCloudWhenCustomerIsCreatedHandler from "./send-to-cloud-when-customer-is-created-handler";
 
-describe("SendToCloudWhenCustomerIsCreatedHandler Unit Tests", () => {
+describe("SendToCloudWhenCustomerIsCreatedHandler unit tests", () => {
   let spyConsoleLog: any;
 
   beforeEach(() => {

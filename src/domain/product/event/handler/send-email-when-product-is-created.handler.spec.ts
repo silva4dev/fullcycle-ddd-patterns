@@ -2,7 +2,7 @@ import Product from "../../entity/product";
 import ProductCreatedEvent from "../product-created.event";
 import SendEmailWhenProductIsCreatedHandler from "./send-email-when-product-is-created.handler";
 
-describe("SendEmailWhenProductIsCreatedHandler Unit Tests", () => {
+describe("SendEmailWhenProductIsCreatedHandler unit tests", () => {
   let spyConsoleLog: any;
 
   beforeEach(() => {
