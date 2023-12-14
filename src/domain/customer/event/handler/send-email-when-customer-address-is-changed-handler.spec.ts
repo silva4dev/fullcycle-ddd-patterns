@@ -18,14 +18,14 @@ describe("SendEmailWhenCustomerAddressIsChangedHandler unit tests", () => {
     const customer = new Customer("1", "Customer 1");
     const address = new Address("Street 1", 123, "13350-250", "São Paulo");
     customer.changeAddress(address);
-    const customerCreatedEvent = new CustomerChangedAddressEvent({
+    const customerChangedAddressEvent = new CustomerChangedAddressEvent({
       id: customer.id,
       name: customer.name,
       address: customer.Address,
     });
 
     new SendEmailWhenCustomerAddressIsChangedHandler().handle(
-      customerCreatedEvent
+      customerChangedAddressEvent
     );
 
     expect(spyConsoleLog).toHaveBeenCalledWith(
