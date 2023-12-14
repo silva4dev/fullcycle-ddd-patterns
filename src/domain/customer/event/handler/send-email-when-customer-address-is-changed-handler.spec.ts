@@ -1,9 +1,9 @@
 import Customer from "../../entity/customer";
 import Address from "../../value-object/address";
-import CustomerCreatedEvent from "../customer-created.event";
+import CustomerChangedAddressEvent from "../customer-changed-address-event";
 import SendEmailWhenCustomerAddressIsChangedHandler from "./send-email-when-customer-address-is-changed-handler";
 
-describe("SendEmailWhenCustomerAddressIsChangedHandler Unit Tests", () => {
+describe("SendEmailWhenCustomerAddressIsChangedHandler unit tests", () => {
   let spyConsoleLog: any;
 
   beforeEach(() => {
@@ -18,19 +18,15 @@ describe("SendEmailWhenCustomerAddressIsChangedHandler Unit Tests", () => {
     const customer = new Customer("1", "Customer 1");
     const address = new Address("Street 1", 123, "13350-250", "São Paulo");
     customer.changeAddress(address);
-    const customerCreatedEvent = new CustomerCreatedEvent({
+    const customerCreatedEvent = new CustomerChangedAddressEvent({
       id: customer.id,
       name: customer.name,
-      address: customer.Address.toString(),
+      address: customer.Address,
     });
 
     new SendEmailWhenCustomerAddressIsChangedHandler().handle(
       customerCreatedEvent
     );
-
-    console.log(`Customer address: ${customer.id}, ${
-        customer.name
-      } changed to: ${customer.Address.toString()}`)
 
     expect(spyConsoleLog).toHaveBeenCalledWith(
       `Customer address: ${customer.id}, ${
